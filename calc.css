@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+* , *::before, *::after{
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+body {
+    background-color: #c2c2d6;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    display: grid;
+    margin: 50px auto;
+    width: 330px;
+    background-color: rgba(0, 0, 0);
+    padding: 5px;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+    
+}
+
+.grid-container > button {
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    border: 1px solid black;
+    background-color: #747373;
+    color: #ffffff;
+    outline: none;
+}
+
+.grid-container > button:hover {
+    color: rgba(0, 0, 0, 0.76);
+    background-color: #aaa7a7;
+}
+
+#clear, #zero {
+    grid-column: span 2;
+}
+#clear {
+    background-color: rgb(200, 0, 0);
+}
+
+#equals {
+    grid-row: span 2;
+    background-color: rgb(5, 5, 163);
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.76);
+    border: 2px solid black;
+    border-bottom: none;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    justify-content: space-around;
+    flex-direction: column;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output #history {
+    color: orange;
+    font-size: 1.5rem;
+}
+.output #display {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+}
