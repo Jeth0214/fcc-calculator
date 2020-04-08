@@ -12,7 +12,7 @@ body {
     padding: 0;
 }
 
-.grid-container {
+.calculator {
     display: grid;
     margin: 50px auto;
     width: 330px;
@@ -23,7 +23,7 @@ body {
     
 }
 
-.grid-container > button {
+.calculator > button {
     cursor: pointer;
     font-size: 2rem;
     font-weight: 500;
@@ -33,7 +33,7 @@ body {
     outline: none;
 }
 
-.grid-container > button:hover {
+.calculator > button:hover {
     color: rgba(0, 0, 0, 0.76);
     background-color: #aaa7a7;
 }
@@ -48,6 +48,11 @@ body {
 #equals {
     grid-row: span 2;
     background-color: rgb(5, 5, 163);
+    color: #bbbbbb;
+}
+#equals:hover {
+    background-color: rgb(5, 5, 163, 0.5);
+    color: #ffffff;
 }
 
 .output {

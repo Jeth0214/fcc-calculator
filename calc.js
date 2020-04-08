@@ -1,41 +1,48 @@
 //create a class Calculator
 class Calculator {
-    constructor(operationTextMessage, displayTextMessage){
+    constructor(operationTextMessage, displayTextMessage, ){
         this.operationTextMessage = operationTextMessage;
         this.displayTextMessage = displayTextMessage;
         this.reset();
     };
 
     reset(){
-        this.operationText = '';
-        this.displayText = '0';
-        this.operator = undefined;
-        console.log(this.displayText)
+        this.displayTextMessage.innerText = '0';
+        this.operationTextMessage.innerText = '';
     };
 
-    appendNumber(number){
-        
-        if(this.displayText[0] === '0'){
-            let withoutZeroAtFirst = this.displayText.slice(1);
-            this.displayText = withoutZeroAtFirst;
-        };
-        if(number === '.' && this.displayText.includes('.')) {
-            return
-        }
+    inputDisplay(button, e){
+        const key = e.target;
+        const action = key.dataset.action;
+        let keyContent = key.textContent;
+        let displayedNum = display.textContent;
+        if (!action) {
+            if (displayedNum === '0') {
+              display.textContent = keyContent;
+            } else {
+              display.textContent = displayedNum + keyContent;
+            }
+          }
 
-        this.displayText = this.displayText.toString() + number.toString();
-    };
+          if (action === 'decimal') {
+            display.textContent = displayedNum + '.'
+          };
+          if (action === 'decimal' || displayedNum.includes('.')) {
+            return;
+          };
 
-    chooseOperator(operator){
+          if (
+            action === 'add' ||
+            action === 'subtract' ||
+            action === 'multiply' ||
+            action === 'divide'
+          ) {
+            display.textContent = keyContent;
+          };
 
-    };
-
+    }
     compute(){
 
-    };
-
-    updateDisplayText(){
-        this.displayTextMessage.innerText = this.displayText;
     };
 }
 
@@ -44,25 +51,29 @@ class Calculator {
 
 
 // Selectors
-const numberButtons = document.querySelectorAll('.numberButtons');
-const operators = document.querySelectorAll('.operators');
+const calculator = document.querySelector('.calculator');
+const calculateButtons = document.querySelectorAll('button');
 const clearButton = document.querySelector('#clear');
 const equalsButton = document.querySelector('#equals');
 const operationTextMessage = document.querySelector('#history');
 const displayTextMessage = document.querySelector('#display');
+const operatorText = document.querySelector('.operator');
 
 
 //instanciate a Calculator Class
-const calculator = new Calculator(operationTextMessage, displayTextMessage);
+const calculate= new Calculator(operationTextMessage, displayTextMessage);
 
-numberButtons.forEach ( button => {
-    button.addEventListener('click', ()=>{
-        calculator.appendNumber(button.innerText);
-        calculator.updateDisplayText();
+calculateButtons.forEach ( button => {
+    button.addEventListener('click', (e)=>{
+        calculate.inputDisplay(button,e);
     })
 });
 
+
+
 clearButton.addEventListener('click', () => {
-    calculator.reset();
-    calculator.updateDisplayText();
+    calculate.reset();
 });
+
+document.onload = ()=> {
+calculate.reset()};
